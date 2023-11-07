@@ -49,64 +49,272 @@ The database project will be crucial for us to manage these aspects effectively.
 
 ## Data Dictionary 
 
-| Entity Name        | Column Name        | Description                                         | Data Type and Length  |
-|--------------------|--------------------|-----------------------------------------------------|-----------------------|
-| Coach              | coachID            | Unique identification number for each coach (PRIMARY KEY)   | INT                 |
-| Coach              | coachFname         | First name of each coach                            | VARCHAR(45)          |
-| Coach              | coachLname         | Last name of each coach                             | VARCHAR(45)          |
-| Coach              | title              | Title of each coach                                 | VARCHAR(45)          |
-| Coach              | salary             | Salary of each coach                                | VARCHAR(45)          |
-| Coach              | dob                | Date of birth for each coach                        | DATE                |
-| Coach              | Teams_teamID      | The teamID for the team they are the coach for (FOREIGN KEY)  | INT                 |
-| Costs              | costID             | Unique ID for each specific cost (PRIMARY KEY)     | INT                 |
-| Costs              | Teams_teamID      | The teamID for the team that is the source of each cost (FOREIGN KEY)  | INT                 |
-| Costs              | costType           | The type of each cost                               | VARCHAR(45)          |
-| Injury             | InjuryID           | Unique identification number for each injury (PRIMARY KEY)   | INT                 |
-| Injury             | injuryType         | Describes the area of the body where the injury occurred | VARCHAR(45)          |
-| Injury             | Matches_matchID    | The matchID for the match when the injury occurred (FOREIGN KEY) | INT                 |
-| Injury             | Player_playerID    | The playerID for the player who got injured (FOREIGN KEY) | INT                 |
-| Kits               | kitsID             | The unique ID of the kit (PRIMARY KEY)              | INT                 |
-| Kits               | kitName            | The name of the kit                                 | VARCHAR(45)          |
-| Kits               | kitType            | The style of jersey each kit is                    | VARCHAR(45)          |
-| Kits               | Teams_teamID      | The ID of the team that wears the kit (FOREIGN KEY) | INT                 |
-| Matches            | matchID            | Unique identification number for each match (PRIMARY KEY) | INT                 |
-| Matches            | opponent           | Lists the name of the opponent our club's team faced that match | VARCHAR(45)          |
-| Matches            | date               | Lists the date that the match was played            | DATE                |
-| Matches            | result             | Lists the result of the match from our club's perspective (win, loss, or draw) | VARCHAR(45)          |
-| Matches            | Teams_teamID      | The teamID for the team of our club that played in the match (FOREIGN KEY) | INT                 |
-| Matches            | Stadium_stadiumID | The stadiumID for the stadium where the match was played (FOREIGN KEY) | INT                 |
-| Players            | playerID           | The unique ID of the player (PRIMARY KEY)           | INT                 |
-| Players            | firstName          | The first name of each player                       | VARCHAR(45)          |
-| Players            | lastName           | The last name of each player                        | VARCHAR(45)          |
-| Players            | dateOfBirth        | The date of birth of each player                    | VARCHAR(45)          |
-| Players            | position           | The position played by each player                  | VARCHAR(45)          |
-| Players            | nationality        | Country of origin for each player                   | VARCHAR(45)          |
-| Players            | salary             | How much each player is paid                        | VARCHAR(45)          |
-| Players            | Teams_teamID      | TeamID of the team that the player plays for (FOREIGN KEY) | INT                 |
-| Players            | Players_playerID  | The playerID of the player that is the mentor for the player whose playerID is the primary key of the row (ONE TO MANY RECURSIVE) | INT |
-| Revenues           | revenueID          | The unique ID of the specific revenue stream (PRIMARY KEY) | INT                 |
-| Revenues           | revenueType        | Type of revenue for each specific revenue stream    | VARCHAR(45)          |
-| Revenues           | revenueAmount      | The dollar value brought in by the specific revenue stream | INT               |
-| Revenues           | Teams_teamID      | The teamID of the team that is responsible for generating each specific revenue stream (FOREIGN KEY) | INT |
-| Sponsor            | sponsorID          | The unique ID of the sponsor (PRIMARY KEY)           | INT                 |
-| Sponsor            | sponsorName        | Name of sponsor                                     | VARCHAR(45)          |
-| Stadium            | stadiumID          | The unique identification number for each stadium (PRIMARY KEY) | INT           |
-| Stadium            | city               | The city where each stadium is located              | VARCHAR(45)          |
-| Stadium            | state              | State where the stadium is located                  | VARCHAR(45)          |
-| Stadium            | capacity           | Stadium capacity                                   | VARCHAR(45)          |
-| Stadium            | stadiumName        | Name of the stadium                                 | VARCHAR(45)          |
-| Stadium            | yearBuilt          | Year the stadium was built                         | VARCHAR(45)          |
-| Team_Staff         | staffID            | The unique identification number for each staff member (PRIMARY KEY) | INT              |
-| Team_Staff         | title              | Title of each staff member                          | VARCHAR(45)          |
-| Team_Staff         | staffFname         | First name of each staff member                     | VARCHAR(45)          |
-| Team_Staff         | staffLname         | Last name of each staff member                      | VARCHAR(45)          |
-| Team_Staff         | salary             | Salary of each staff member                         | VARCHAR(45)          |
-| Team_Staff         | dob                | Date of birth of each staff member                  | DATE                |
-| Team_Staff         | Teams_teamID      | The teamID for the team they are a staff member for (FOREIGN KEY) | INT                |
-| Teams              | teamID             | The unique identification number for each team in our club (PRIMARY KEY) | INT          |
-| Teams              | teamName           | The name of each team in our club (all teams go by our club name of FC Salge) | VARCHAR(45) |
-| Teams              | teamLevel          | Gives the level each team plays at                   | VARCHAR(45)          |
-| Teams              | Stadium_stadiumID | Lists the home stadium for each team (FOREIGN KEY)   | INT                 |
-| Teams_has_Sponsor  | teamsponsorID      | The unique ID of the pairing of the team and sponsor (PRIMARY KEY) | INT          |
-| Teams_has_Sponsor  | Teams_teamID      | The unique ID of the team being sponsored (FOREIGN KEY) | INT             |
-| Teams_has_Sponsor  | Sponsor_sponsorID  | The unique ID of the sponsor (FOREIGN KEY)           | INT                 |
+| Entity Name   | Column Name       | Description                                       | Data Type and Length |
+|---------------|-------------------|---------------------------------------------------|-----------------------|
+| Coach         | coachID           | Unique identification number for each coach (PRIMARY KEY) | INT                 |
+| Coach         | coachFname        | First name of each coach                         | VARCHAR(45)          |
+| Coach         | coachLname        | Last name of each coach                          | VARCHAR(45)          |
+| Coach         | title             | Title of each coach                              | VARCHAR(45)          |
+| Coach         | salary            | Salary of each coach                             | INT                 |
+| Coach         | dob               | Date of birth for each coach                     | DATE                |
+| Coach         | Teams_teamID      | The teamID for the team they are the coach for (FOREIGN KEY) | INT                 |
+| Costs         | costID            | The unique ID for each specific cost (PRIMARY KEY) | INT                 |
+| Costs         | Teams_teamID      | The teamID for the team that is the source of each cost (FOREIGN KEY) | INT                 |
+| Costs         | costType          | The type of each cost                            | VARCHAR(45)          |
+| Injury        | InjuryID          | Unique identification number for each injury (PRIMARY KEY) | INT                 |
+| Injury        | injuryType        | Describes the area of the body where the injury occurred | VARCHAR(45)          |
+| Injury        | Matches_matchID   | The matchID for the match when the injury occurred (FOREIGN KEY) | INT              |
+| Injury        | Player_playerID   | The playerID for the player who got injured (FOREIGN KEY) | INT              |
+| Kits          | kitsID            | The unique ID of the kit (PRIMARY KEY)           | INT                 |
+| Kits          | kitName           | The name of the kit                              | VARCHAR(45)          |
+| Kits          | kitType           | The style of jersey each kit is                   | VARCHAR(45)          |
+| Kits          | Teams_teamID      | The ID of the team that wears the kit (FOREIGN KEY) | INT                 |
+| Matches       | matchID           | Unique identification number for each match (PRIMARY KEY) | INT              |
+| Matches       | opponent          | Lists the name of the opponent our club’s team faced that match | VARCHAR(45)    |
+| Matches       | date              | Lists the date that the match was played         | DATE                |
+| Matches       | result            | Lists the result of the match from our club’s perspective (win, loss, or draw) | VARCHAR(45) |
+| Matches       | Teams_teamID      | The teamID for the team of our club that played in the match (FOREIGN KEY) | INT         |
+| Matches       | Stadium_stadiumID | The stadiumID for the stadium where the match was played (FOREIGN KEY) | INT             |
+| Players       | playerID          | The unique ID of the player (PRIMARY KEY)        | INT                 |
+| Players       | firstName         | The first name of each player                    | VARCHAR(45)          |
+| Players       | lastName          | The last name of each player                     | VARCHAR(45)          |
+| Players       | dateOfBirth       | The date of birth of each player                  | VARCHAR(45)          |
+| Players       | position          | The position played by each player                | VARCHAR(45)          |
+| Players       | nationality       | Country of origin for each player                | VARCHAR(45)          |
+| Players       | salary            | The salary of each player                        | INT                 |
+| Players       | Teams_teamID      | TeamID of the team that the player plays for (FOREIGN KEY) | INT                 |
+| Players       | Players_playerID  | The playerID of the player that is the mentor for the player whose playerID is the primary key of the row (ONE TO MANY RECURSIVE) | INT |
+| Revenues      | revenueID         | The unique ID of the specific revenue stream (PRIMARY KEY) | INT              |
+| Revenues      | revenueType       | Type of revenue for each specific revenue stream  | VARCHAR(45)          |
+| Revenues      | revenueAmount     | The dollar value brought in by the specific revenue stream | INT              |
+| Revenues      | Teams_teamID      | The teamID of the team that is responsible for generating each specific revenue stream (FOREIGN KEY) | INT |
+| Sponsor       | sponsorID         | The unique ID of the sponsor (PRIMARY KEY)        | INT                 |
+| Sponsor       | sponsorName       | Name of sponsor                                  | VARCHAR(45)          |
+| Sponsor       | amountReceived    | Amount of money received from each sponsor       | INT                 |
+| Sponsor       | contractLength    | Length of each sponsorship contract               | INT                 |
+| Stadium       | stadiumID         | The unique identification number for each stadium (PRIMARY KEY) | INT             |
+| Stadium       | city              | The city where each stadium is located            | VARCHAR(45)          |
+| Stadium       | state             | The state where each stadium is located           | VARCHAR(45)          |
+| Stadium       | capacity          | How many spectators can fit in each stadium for a given match | INT           |
+| Stadium       | stadiumName       | The name of each stadium                          | VARCHAR(45)          |
+| Stadium       | yearBuilt         | The year each stadium was built                   | VARCHAR(45)          |
+| Team_Staff    | staffID           | The unique identification number for each staff member (PRIMARY KEY) | INT          |
+| Team_Staff    | title             | Title of each staff member                         | VARCHAR(45)          |
+| Team_Staff    | staffFname        | First name of each staff member                    | VARCHAR(45)          |
+| Team_Staff    | staffLname        | Last name of each staff member                     | VARCHAR(45)          |
+| Team_Staff    | salary            | Salary of each staff member                        | INT                 |
+| Team_Staff    | dob               | Date of birth of each staff member                 | DATE                |
+| Team_Staff    | Teams_teamID      | The teamID for the team they are a staff member for (FOREIGN KEY) | INT             |
+| Teams         | teamID            | The unique identification number for each team in our club (PRIMARY KEY) | INT          |
+| Teams         | teamName          | The name of each team in our club (all teams go by our club name of FC Salge) | VARCHAR(45) |
+| Teams         | teamLevel         | Gives the level each team plays at                 | VARCHAR(45)          |
+| Teams         | Stadium_stadiumID | Lists the home stadium for each team (FOREIGN KEY) | INT                 |
+| Teams_has_Sponsor | teamsponsorID   | The unique ID of the pairing of the team and sponsor (PRIMARY KEY) | INT             |
+| Teams_has_Sponsor | Teams_teamID   | The unique ID of the team being sponsored (FOREIGN KEY) | INT                |
+| Teams_has_Sponsor | Sponsor_sponsorID | The unique ID of the sponsor (FOREIGN KEY)       | INT                 |
+
+
+## Ten Queries
+
+Query 1: Find the salary distribution by position for each team where the total salary for the position group is greater than $500,000
+
+Justification: This query gives us data that can be used by the front office of the club to decipher which position groups are being paid the most money, and how much they are being paid. They can use this information to figure out which position groups they want to allocate their budget to in the future.
+
+Execute:
+> Select teamLevel, position, SUM(salary) as totalSalary
+From Players, Teams
+Where Players.Teams_teamID = Teams.teamID
+Group By teamLevel, position
+Having SUM(salary) > 500000
+
++ -------------- + ------------- + ---------------- +
+| teamLevel      | position      | totalSalary      |
++ -------------- + ------------- + ---------------- +
+| League 1       | Forward       | 2050000          |
+| League 1       | Midfielder    | 520000           |
+| League 1       | Defender      | 510000           |
+| League 2       | Forward       | 1300000          |
+| League 2       | Midfielder    | 850000           |
+| League 3       | Forward       | 1450000          |
+| League 3       | Midfielder    | 790000           |
++ -------------- + ------------- + ---------------- +
+7 rows
+
+
+
+Query 2: Select all the kits for team 1
+
+Justification: This query allows the club to see which kits are utilized by Team 1. This information could be used by the coaching staff to figure out which kits the team will wear for which matches.
+
+Execute:
+> Select kitName FROM Kits
+Where Teams_teamID = 1
+
++ ------------ +
+| kitName      |
++ ------------ +
+| Home Kit     |
+| Away Kit     |
+| Goalkeeper Kit |
+| Alternate Kit |
++ ------------ +
+4 rows
+
+Query 3: Find the names of players who suffered knee injuries:
+
+Justification: This data could be used by the club’s training staff to see which players, and how many players, will need treatment for their knee injuries.
+
+Execute:
+> Select firstName, lastName
+From Players, Injury
+Where Players.PlayerID = Injury.Player_playerID
+And injuryType IN ("Knee")
+
++ -------------- + ------------- +
+| firstName      | lastName      |
++ -------------- + ------------- +
+| Kevin          | De Bruyne     |
+| Harry          | Kane          |
++ -------------- + ------------- +
+2 rows
+
+Query 4: Find the names and teamID’s of team staff members that have a job title of Marketing and have last names that end in ‘n’:
+
+Justification:
+
+Execute:
+> Select staffFname, staffLname, teamID
+From Team_Staff, Teams
+Where Teams.teamID = Team_Staff.Teams_teamID 
+And title IN ("Marketing")
+And staffLname regexp "n$"
+
++ --------------- + --------------- + ----------- +
+| staffFname      | staffLname      | teamID      |
++ --------------- + --------------- + ----------- +
+| David           | Anderson        | 1           |
+| Jaquelyn        | Williamson      | 1           |
++ --------------- + --------------- + ----------- +
+2 rows
+
+Query 5: Find the names and salaries of defense coaches whose salaries are greater than the average salaries of the team staff members
+
+Execute:
+> Select coachFname, coachLname, salary
+From Coach
+Where title regexp "Defense Coach"
+And salary > 
+	(Select AVG(salary) from Team_Staff)
+
++ --------------- + --------------- + ----------- +
+| coachFname      | coachLname      | salary      |
++ --------------- + --------------- + ----------- +
+| Patricia        | Hernandez       | 67000       |
++ --------------- + --------------- + ----------- +
+1 rows
+
+Query 6: Find the name and location of the stadium, as well as the date of the match, where a player suffered either an ankle or foot injury. Specify which type of injury was suffered.
+
+Justification: This data will allow the club to see which fields may be more susceptible to ankle and foot injuries. This information is valuable because if there is a trend where a certain field sees more ankle and foot injuries than other fields, then they can work on improving the conditions of the pitch.
+
+Execute:
+> Select stadiumName, CONCAT(city, ", ", state) as location, matchDate, injuryType
+From Stadium, Matches, Injury
+Where Stadium.stadiumID = Matches.Stadium_stadiumID
+And Matches.matchID = Injury.Matches_matchID
+And injuryType regexp "Ankle|Foot"
+
++ ---------------- + ------------- + -------------- + --------------- +
+| stadiumName      | location      | matchDate      | injuryType      |
++ ---------------- + ------------- + -------------- + --------------- +
+| Puma Park        | Dallas, TX    | 2023-01-15     | Ankle           |
+| Adidas Stadium   | Los Angeles, CA | 2023-01-08     | Foot            |
++ ---------------- + ------------- + -------------- + --------------- +
+2 rows
+
+Query 7: Lists all the players in the club that are from Brazil, this is for a simple 
+
+Execute:
+> Select firstName, lastName, playerID, teamID
+From Players, Teams
+Where Players.Teams_teamID = Teams.teamID
+And nationality REGEXP ("Brazil")
+
++ -------------- + ------------- + ------------- + ----------- +
+| firstName      | lastName      | playerID      | teamID      |
++ -------------- + ------------- + ------------- + ----------- +
+| Neymar         | da Silva Santos | 3             | 1           |
+| Casemiro       | Santos        | 14            | 2           |
+| Marcelo        | Vieira        | 17            | 2           |
+| Thiago         | Silva         | 18            | 2           |
++ -------------- + ------------- + ------------- + ----------- +
+4 rows
+
+Query 8: Upper management wants to know which position has the highest average salary
+
+Justification: This data could be used by the club’s front office to see which positions they spend the majority of their budget on, so that they can focus on trying to even out the distribution of the team’s budget should they so choose.
+
+Execute:
+> Select Position, avg(salary) as Average_Salary
+From Players
+Group by Position
+
++ ------------- + ------------------- +
+| Position      | Average_Salary      |
++ ------------- + ------------------- +
+| Forward       | 342857.14285714284  |
+| Midfielder    | 270000              |
+| Defender      | 238333.33333333334  |
+| Goalkeeper    | 160000              |
++ ------------- + ------------------- +
+4 rows
+
+Query 9: Find the result of the games that england players have head injuries that are playing forward 
+
+Execute:
+> Select result, injuryType, nationality, position 
+from Players, Injury, Matches 
+Where Injury.Matches_matchID = Matches.matchID 
+And Players.playerID = Injury.Player_playerID
+And nationality IN  ("Italy")
+And injuryType IN ("head")
+And position IN ("Goalkeeper")
+
++ ----------- + --------------- + ---------------- + ------------- +
+| result      | injuryType      | nationality      | position      |
++ ----------- + --------------- + ---------------- + ------------- +
+| Loss        | Head            | Italy            | Goalkeeper    |
++ ----------- + --------------- + ---------------- + ------------- +
+1 rows
+
+Query 10: Find the number of players grouped by nationality who salaries are above the average salaries of players 
+
+Execute:
+> Select nationality, COUNT(*) as Number_Of_Players from Players 
+Group by nationality
+
++ ---------------- + ---------------------- +
+| nationality      | Number_Of_Players      |
++ ---------------- + ---------------------- +
+| Argentina        | 1                      |
+| Portugal         | 1                      |
+| Brazil           | 4                      |
+| Belgium          | 3                      |
+| Spain            | 1                      |
+| France           | 3                      |
+| Poland           | 1                      |
+| Croatia          | 1                      |
+| Netherlands      | 2                      |
+| England          | 3                      |
+| Germany          | 2                      |
+| Italy            | 1                      |
+| Norway           | 1                      |
+| Senegal          | 2                      |
+| Cuba             | 1                      |
+| Uruguay          | 1                      |
+| Morocco          | 1                      |
+| USA              | 1                      |
+| Botswana         | 1                      |
++ ---------------- + ---------------------- +
+19 rows
+
