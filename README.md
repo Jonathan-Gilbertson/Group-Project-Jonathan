@@ -48,6 +48,7 @@ The database project will be crucial for us to manage these aspects effectively.
 <img width="338" alt="Screenshot 2023-11-06 223444" src="https://github.com/Jonathan-Gilbertson/Group-Project-Jonathan/assets/118770927/9ef40660-1278-4272-a7ec-009e6a27af90">
 
 ## Data Dictionary 
+
 | Entity Name        | Column Name        | Description                                         | Data Type and Length  |
 |--------------------|--------------------|-----------------------------------------------------|-----------------------|
 | Coach              | coachID            | Unique identification number for each coach (PRIMARY KEY)   | INT                 |
