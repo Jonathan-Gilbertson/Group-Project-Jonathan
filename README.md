@@ -42,9 +42,7 @@ The database project will be crucial for us to manage these aspects effectively.
 
 
 ## Data Model
-<img width="454" alt="Updated Data Model" src="https://github.com/Jonathan-Gilbertson/Group-Project-Jonathan/assets/118770927/3cdcca86-8f9f-4a67-83de-5ce36247ae98">
-
-
+<img width="454" alt="Updated Data Model" src="https://github.com/Jonathan-Gilbertson/Group-Project-Jonathan/assets/118770927/46c09b1a-33e3-4623-b32d-7270687fb4a7">
 
 ## Data Dictionary 
 
