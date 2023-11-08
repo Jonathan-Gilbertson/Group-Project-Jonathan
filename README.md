@@ -175,26 +175,27 @@ And injuryType IN ("Knee")
 + -------------- + ------------- +
 2 rows
 
-Query 4: Find the names and teamID’s of team staff members that have a job title of Marketing and have last names that end in ‘n’:
+Query 4: Find the names and teamID’s of team staff members that have a job title of Marketing and have the last name Anderson:
 
-Justification:
+Justification: We have an HR complaint for a person in the marketing department with the last name of Anderson 
 
 Execute:
 > Select staffFname, staffLname, teamID
 From Team_Staff, Teams
 Where Teams.teamID = Team_Staff.Teams_teamID 
 And title IN ("Marketing")
-And staffLname regexp "n$"
+And staffLname regexp "Anderson"
 
 + --------------- + --------------- + ----------- +
 | staffFname      | staffLname      | teamID      |
 + --------------- + --------------- + ----------- +
-| David           | Anderson        | 1           |
-| Jaquelyn        | Williamson      | 1           |
+| David           | Anderson        | 1           |     
 + --------------- + --------------- + ----------- +
-2 rows
+1 row
 
 Query 5: Find the names and salaries of defense coaches whose salaries are greater than the average salaries of the team staff members
+
+Justification: Our Club would like to see if we are valuing our average defense coaches more than the average of all our coaches 
 
 Execute:
 > Select coachFname, coachLname, salary
@@ -231,7 +232,7 @@ And injuryType regexp "Ankle|Foot"
 
 Query 7: Lists all the players in the club that are from Brazil, this is for a simple 
 
-Justification:
+Justification: The Brazilian national team has a series of games coming up and the team sees which players may potentially have to miss club games for international games. 
 
 Execute:
 > Select firstName, lastName, playerID, teamID
@@ -268,7 +269,9 @@ Group by Position
 + ------------- + ------------------- +
 4 rows
 
-Query 9: Find the result of the games that england players have head injuries that are playing forward 
+Query 9: Find the result of the games that Italian players have head injuries and are playing goalkeeper
+
+Justification: There is a new regulation in Italy for concussions for their athletes,specifically goalkeepers, so we need to make sure that we are vigilantly keeping up to date about their head injuries 
 
 Execute:
 > Select result, injuryType, nationality, position 
@@ -286,7 +289,10 @@ And position IN ("Goalkeeper")
 + ----------- + --------------- + ---------------- + ------------- +
 1 rows
 
-Query 10: Find the number of players grouped by nationality who salaries are above the average salaries of players 
+Query 10: Find the number of players grouped by nationality whose salaries are above the average salaries of players 
+
+Justification:
+Management was curious to see what players from which countries are being paid the most, as a way to scout and identify talent.
 
 Execute:
 > Select nationality, COUNT(*) as Number_Of_Players from Players 
@@ -318,7 +324,7 @@ Group by nationality
 19 rows
 
 
-## Data base information
+## Database information
 
 | Type | Query 1 | Query 2 | Query 3 | Query 4 | Query 5 | Query 6 | Query 7 | Query 8 | Query 9 | Query 10 |
 |------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|
@@ -328,6 +334,6 @@ Group by nationality
 | Group By	|	| 	|	|	|	|	|	| X |	|	|
 | Group By Having	| X | 	|	|	|	|	|	|	|	|	|
 | Multi Condition Where	|	| 	| X | X |	| X |	|	| X |	|
-| Built In Function	| X | 	|	|	| X |	|	| X |	|	|
+| Built In Function	| X | 	|	|	| X |	|	| X |	| X |
 | Reg Exp	|	| 	|	| X | X | X | X |	|	|	|
 | Concat	|	| 	|	|	|	| X |	|	|	|	|
