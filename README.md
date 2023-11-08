@@ -231,6 +231,8 @@ And injuryType regexp "Ankle|Foot"
 
 Query 7: Lists all the players in the club that are from Brazil, this is for a simple 
 
+Justification:
+
 Execute:
 > Select firstName, lastName, playerID, teamID
 From Players, Teams
@@ -314,6 +316,7 @@ Group by nationality
 | Botswana         | 1                      |
 + ---------------- + ---------------------- +
 19 rows
+
 
 ## Data base information
 
